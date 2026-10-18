@@ -458,7 +458,7 @@
 
 /* -------------------------------------------------------------- */
 .line {
-    border-bottom: 4px solid hsl(var(--clr-sec));
+    border-bottom: 4px solid var(--clr-sec);
     width: 100%;
     margin-top: 1.2rem;
 }
@@ -482,7 +482,7 @@
     }
 
     .line {
-        border-bottom: 4px solid hsl(var(--clr-sec));
+        border-bottom: 4px solid var(--clr-sec);
         width: 100%;
         margin-top: 1.2rem;
     }

@@ -1,65 +1,66 @@
-consoleText(["nous some ?", "nous some ?", "nous some ?"], "text", [
-  "tomato",
-  "rebeccapurple",
-  "lightblue",
-]);
-function consoleText(words, id, colors) {
-  if (colors === undefined) colors = ["#fff"];
-  var visible = true;
-  var con = document.getElementById("console");
-  var letterCount = 1;
-  var x = 1;
-  var waiting = false;
-  var target = document.getElementById(id);
-  window.setInterval(function () {
-    if (letterCount === 0 && waiting === false) {
+//---------------------------< typing effect in the intro title >---------------------------//
+consoleText(["sommes-nous ?"], "text");
+
+function consoleText(words, id) {
+  const target = document.getElementById(id);
+  const cursor = document.getElementById("console");
+  if (!target || !words.length) return;
+
+  let letterCount = 1;
+  let direction = 1;
+  let waiting = false;
+
+  setInterval(function () {
+    if (waiting) return;
+
+    if (letterCount === 0) {
       waiting = true;
-      target.innerHTML = words[0].substring(0, letterCount);
-      window.setTimeout(function () {
-        var usedColor = colors.shift();
-        colors.push(usedColor);
-        var usedWord = words.shift();
-        words.push(usedWord);
-        x = 1;
-        letterCount += x;
+      target.textContent = "";
+      setTimeout(function () {
+        words.push(words.shift());
+        direction = 1;
+        letterCount = 1;
         waiting = false;
       }, 1000);
-    } else if (letterCount === words[0].length + 1 && waiting === false) {
+    } else if (letterCount === words[0].length + 1) {
       waiting = true;
-      window.setTimeout(function () {
-        x = -1;
-        letterCount += x;
+      setTimeout(function () {
+        direction = -1;
+        letterCount += direction;
         waiting = false;
-      }, 1000);
-    } else if (waiting === false) {
-      target.innerHTML = words[0].substring(0, letterCount);
-      letterCount += x;
+      }, 1500);
+    } else {
+      target.textContent = words[0].substring(0, letterCount);
+      letterCount += direction;
     }
   }, 120);
-  window.setInterval(function () {
-    if (visible === true) {
-      con.className = "console-underscore hidden";
-      visible = false;
-    } else {
-      con.className = "console-underscore";
 
-      visible = true;
-    }
-  }, 400);
+  if (cursor) {
+    setInterval(function () {
+      cursor.classList.toggle("hidden");
+    }, 400);
+  }
 }
-["resize", "load"].forEach(function (e) {
-  window.addEventListener(e, function () {
-    var x = document.querySelector(".container-cellule");
-    var dispLarge = document.querySelector("#displayLarge");
-    var dispMobile = document.querySelector("#displayMobile");
-    if (window.innerWidth > 660) {
-      x.style.display = "flex";
-      dispLarge.style.display = "block";
-      dispMobile.style.display = "none";
-    } else {
-      x.style.display = "none";
-      dispLarge.style.display = "none";
-      dispMobile.style.display = "flex";
-    }
+
+//---------------------------< cells: large layout vs flip cards on mobile >---------------------------//
+function layoutCells() {
+  const cellContainer = document.querySelector(".container-cellule");
+  const dispLarge = document.querySelector("#displayLarge");
+  const dispMobile = document.querySelector("#displayMobile");
+  if (!cellContainer || !dispLarge || !dispMobile) return;
+
+  const large = window.innerWidth > 660;
+  cellContainer.style.display = large ? "flex" : "none";
+  dispLarge.style.display = large ? "block" : "none";
+  dispMobile.style.display = large ? "none" : "flex";
+}
+
+layoutCells();
+window.addEventListener("resize", layoutCells);
+
+// Flip cards must also work on touch devices, where there is no hover.
+document.querySelectorAll("#displayMobile .flip-card").forEach(function (card) {
+  card.addEventListener("click", function () {
+    card.classList.toggle("flipped");
   });
 });

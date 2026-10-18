@@ -1,0 +1,53 @@
+# Changelog
+
+## 2026-10-18 – Corrections et améliorations
+
+Aucun changement de technologie : le site reste en HTML, CSS et JavaScript purs.
+
+### Corrections
+
+* **Couleurs invalides** : `hsl(var(--clr-x))` était utilisé avec des variables hexadécimales,
+  ce qui rendait invisibles les bordures des cartes de l'accueil, les lignes de titre, la barre
+  de défilement et plusieurs couleurs du pied de page. Remplacé par `var(--clr-x)`.
+* **Diaporamas de la page Expériences** : les flèches et les puces d'un diaporama pilotaient
+  tous les diaporamas de la page en même temps, le bouton « précédent » revenait toujours à la
+  4ᵉ diapositive, et le défilement automatique continuait pendant la lecture d'une vidéo.
+  Chaque diaporama est maintenant indépendant et se met en pause quand une vidéo joue.
+* **Bascule de thème** : le script plantait sur les pages sans diaporama (`experience.html`,
+  `service_offer.html`) et n'était pas chargé sur l'accueil. Le choix clair / sombre est
+  désormais mémorisé (`localStorage`) et appliqué sur toutes les pages.
+* **Galeries de la page Événements** : la direction d'affichage (`row-reverse`) n'était jamais
+  réinitialisée après un retour en arrière.
+* **Page À propos** : titre de l'onglet « Event » corrigé, attribut `tab-index` → `tabindex`,
+  balise `<P>` → `<p>`, classe inexistante `fs-450` → `fs-500`, la cellule communication était
+  titrée « cellule de prospection », et le texte animé affichait « nous some ? » au lieu de
+  « sommes-nous ? ».
+* **Références cassées** : `js/ech.js` (404) et un fichier vide `path/to/font-awesome/...`
+  supprimés ; l'icône du thème était chargée depuis un site externe (uplooder.net), elle est
+  maintenant locale.
+* **Barre de navigation fixe** : l'espace réservé prend la vraie hauteur de la barre, la page ne
+  saute plus au moment où la barre devient fixe. Le menu mobile se ferme après un clic sur un
+  lien, en cliquant à côté ou avec la touche Échap.
+* `service_offer.html` : lien actif du pied de page corrigé ; déclarations CSS invalides
+  (`#000 5`, `#000 9`, transform dupliqué) nettoyées ; `width: 100vw` remplacé par `100%` pour
+  éviter le débordement horizontal.
+
+### Performances
+
+* Images des galeries et icônes en `loading="lazy"` + `decoding="async"`.
+* Les 10 vidéos de démonstration (≈190 Mo) ne sont plus préchargées : `preload="metadata"`.
+* Script GSAP (≈70 Ko) chargé mais jamais utilisé : retiré.
+* `preconnect` vers Google Fonts, gestion du défilement via `requestAnimationFrame` et écouteurs
+  passifs.
+* Respect de `prefers-reduced-motion` (animations désactivées pour les utilisateurs qui le demandent).
+
+### Améliorations
+
+* Le bouton « Contactez-nous » ouvre un e-mail ; e-mail et téléphone du pied de page cliquables ;
+  « lancez-vous » mène aux offres.
+* `lang="fr"`, `<meta name="description">`, `theme-color` et favicon sur chaque page.
+* Accessibilité : bouton de menu et de thème utilisables au clavier (`role`, `tabindex`,
+  `aria-*`), styles `:focus-visible`, textes alternatifs descriptifs, liens sociaux avec
+  `rel="noopener"`.
+* Cartes retournables de la page À propos utilisables au toucher.
+* README complet (pages, structure, lancement, déploiement, équipe) et ce changelog.

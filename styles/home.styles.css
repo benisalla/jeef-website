@@ -1,7 +1,7 @@
 .welcome{
   position: absolute;
   top:4rem;
-  width: 100vw;
+  width: 100%;
   z-index: -10;
   overflow-x: hidden;
 }
@@ -37,7 +37,7 @@
 .showCase-container{
   position: absolute;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   top: 0;
   z-index: 0  ;
 }
@@ -61,7 +61,7 @@
 }
 
 .line{
-  border-bottom: 4px solid hsl(var(--clr-sec));
+  border-bottom: 4px solid var(--clr-sec);
   width: 8rem;
   margin-top: 1.2rem;
 }
@@ -76,7 +76,7 @@
   justify-content: space-around;
   flex-direction: column;
   align-items: center;
-  border: 2px solid hsl(var(--clr-prime));
+  border: 2px solid var(--clr-prime);
   padding: 1rem 2rem;
   margin: 2rem;
   width: 15rem;
@@ -92,7 +92,7 @@
 .bordered{
   display: flex;
   align-items: center;
-  border: 1.5px solid hsl(var(--clr-prime));
+  border: 1.5px solid var(--clr-prime);
   padding: 1rem 2rem;
   margin: .5rem 0;
   min-width: min(40rem, 100% );
