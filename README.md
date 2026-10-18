@@ -7,7 +7,7 @@ applications mobiles, UI/UX design, études de marché et product design.
 Le site est écrit **uniquement en HTML, CSS et JavaScript** (pas de framework, pas de build) et
 est hébergé sur GitHub Pages :
 
-**https://benisalla.github.io/jeef-jeef-official-web-site/**
+**https://benisalla.github.io/jeef-website/**
 
 ---
 
@@ -59,8 +59,8 @@ Aucune installation n'est nécessaire. Ouvrez simplement `index.html` dans un na
 le dossier avec un petit serveur statique pour que les vidéos se chargent correctement :
 
 ```bash
-git clone https://github.com/benisalla/jeef-jeef-official-web-site.git
-cd jeef-jeef-official-web-site
+git clone https://github.com/benisalla/jeef-website.git
+cd jeef-website
 python3 -m http.server 8000
 # puis ouvrir http://localhost:8000
 ```
