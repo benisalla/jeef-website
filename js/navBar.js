@@ -119,3 +119,28 @@ if (navBarContainer) {
 
   targets.forEach((el) => observer.observe(el));
 })();
+
+//---------------------------< scroll reveal >---------------------------//
+// Sections fade/slide in the first time they enter the viewport. Without JS nothing is hidden.
+(function () {
+  const REVEAL = ".section-wrapper, .card, .bordered, .method-container, .grid-container, .medsection, .flex-container, .flip-card, .slider";
+  const items = document.querySelectorAll(REVEAL);
+  if (!items.length || !("IntersectionObserver" in window)) return;
+
+  document.documentElement.classList.add("js");
+  items.forEach((el) => el.classList.add("reveal"));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  items.forEach((el) => observer.observe(el));
+})();

@@ -516,9 +516,10 @@
 
 .slide img,
 video {
-    /* position: relative; */
     height: 100%;
     width: 100%;
+    object-fit: contain;
+    background-color: #0f1218;
 }
 
 .slide:first-child {

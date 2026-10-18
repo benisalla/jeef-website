@@ -56,6 +56,22 @@ Aucun changement de technologie : le site reste en HTML, CSS et JavaScript purs.
 * Les `transition: all` sont remplacées par des transitions ciblées (`color`, `opacity`,
   `transform`).
 
+### Interface
+
+* Lignes de titre : la règle `.line` n'était chargée que sur l'accueil ; elle est maintenant
+  partagée (visible sur Offres & services).
+* Boutons : texte toujours blanc sur rouge (il devenait noir en thème clair), largeur fluide,
+  boutons du hero plus grands. Les boutons morts « brochure » / « site de l'événement » mènent
+  maintenant vers les expériences, la page Facebook (événements) et le contact.
+* Navigation et pied de page entièrement en français (« Offres & services », « Événements »,
+  « À propos ») ; fautes corrigées (« les métiers du futur », « Étude de marché », « par an »…).
+* Images des galeries sans déformation (`object-fit`), hero qui se fond dans la page au lieu
+  d'une coupure nette, titre « Qui sommes-nous ? » qui ne déborde plus sur mobile.
+* Menu mobile opaque avec liens plus grands ; ancres non masquées par la barre fixe.
+* Cartes et garanties réagissent au survol ; apparition progressive des sections au défilement
+  (sans JavaScript, tout reste visible).
+* Barre de copyright en pied de page, page `404.html` personnalisée pour GitHub Pages.
+
 ### Améliorations
 
 * Le bouton « Contactez-nous » ouvre un e-mail ; e-mail et téléphone du pied de page cliquables ;

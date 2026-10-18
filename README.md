@@ -21,6 +21,7 @@ est hébergé sur GitHub Pages :
 | Événements | `event.html` | Les événements organisés par la JEEF, avec galeries photos |
 | À propos | `about.html` | La CJEM, qui sommes-nous, et les cellules (formation, événement, prospection, innovation, communication) |
 | Splash | `splash.html` | Animation du logo (page autonome) |
+| 404 | `404.html` | Page « introuvable » servie par GitHub Pages |
 | Design system | `system-design.html` | Palette de couleurs et typographie utilisées par le site (page interne) |
 
 Chaque page partage la même barre de navigation (responsive, menu latéral sur mobile), le même

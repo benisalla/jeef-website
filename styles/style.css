@@ -7,6 +7,8 @@
   --clr-white: #ffffff;
   --clr-prime: #f54d4d;
   --clr-sec: #37a9e1;
+  /* text placed on a red (prime) background: stays white in both themes */
+  --clr-on-prime: #ffffff;
 
   --bs-dark: #212529;
   --light: #eee;
@@ -62,6 +64,10 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+}
+
+[id] {
+  scroll-margin-top: 7rem;
 }
 
 body {
@@ -279,7 +285,7 @@ a {
 .numbered-title>span {
   margin-right: .5em;
   font-weight: 600;
-  color: var(--clr-white);
+  color: var(--clr-on-prime);
   background-color: var(--clr-prime);
   padding: 0.3rem;
 }
@@ -357,6 +363,7 @@ section {
     inset 4px 4px 10px rgba(238, 240, 243, 0.35),
     inset -4px -4px 10px rgba(255, 253, 253, 0.3);
   background-color: var(--light);
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }
 
 @keyframes change {
@@ -401,15 +408,16 @@ section {
 }
 
 .btn {
-  color: var(--clr-white);
+  color: var(--clr-on-prime);
   background-color: var(--clr-prime);
   border: none;
-  padding: 0 1rem;
+  padding: 0 1.4rem;
   height: 2.6rem;
   align-self: center;
-  width: 10rem;
+  min-width: 10rem;
   position: relative;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 a.btn {
@@ -419,7 +427,7 @@ a.btn {
 }
 
 .btn h1 {
-  color: var(--clr-white);
+  color: var(--clr-on-prime);
   z-index: 2;
   position: relative;
   transition: 0.4s ease;
@@ -582,7 +590,8 @@ a.btn {
 /*---------------------< for mobile >---------------------*/
 
 .nav-content.collapsed {
-  background-color: #000000e0;
+  background-color: #0f1218f5;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.35);
   position: fixed;
   width: 50%;
   min-width: 10.5rem;
@@ -598,10 +607,15 @@ a.btn {
 }
 
 .nav-content.collapsed .nav-menu {
-  --gap: 0.6rem;
+  --gap: 1rem;
   margin: 0;
+  padding: 0 1.5rem;
   flex-direction: column;
   position: relative;
+}
+
+.nav-content.collapsed .nav-menu .item a {
+  font-size: var(--fs-500);
 }
 
 .nav-content.collapsed .btn {
@@ -678,6 +692,7 @@ a.btn {
 
 .intro-title h1 span:first-child {
   background-color: var(--clr-prime);
+  color: var(--clr-on-prime);
   padding: 1rem;
 }
 
@@ -698,7 +713,7 @@ a.btn {
 
 
 .event-website-btn {
-  width: 13rem;
+  min-width: 13rem;
   border: 2px var(--clr-prime) solid;
   background-color: transparent;
 }
@@ -718,6 +733,7 @@ a.btn {
 
 .counter {
   background-color: var(--clr-prime);
+  color: var(--clr-on-prime);
   padding: 0.2rem 0.7rem;
 }
 
@@ -749,6 +765,7 @@ a.btn {
 .slide div img {
   width: 24rem;
   height: 16rem;
+  object-fit: cover;
 }
 
 .next {
@@ -799,6 +816,12 @@ a.btn {
     margin-top: 3rem;
     flex-direction: column;
     --gap: 8rem;
+    white-space: normal;
+  }
+
+  .intro-title h1 {
+    font-size: var(--fs-500);
+    min-width: 0;
   }
 
   .nav-menu {
@@ -1329,6 +1352,61 @@ p {
 }
 
 /* ------------------------------------------about end ------------------------------------ */
+/* ------------------- */
+/* Shared components   */
+/* ------------------- */
+
+.line {
+  display: block;
+  width: 8rem;
+  margin-top: 1.2rem;
+  border-bottom: 4px solid var(--clr-sec);
+}
+
+/* cards & bordered rows: subtle lift on hover */
+.card,
+.bordered,
+.cellule {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.card:hover,
+.bordered:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+.bordered:hover {
+  background-color: rgba(245, 77, 77, 0.08);
+}
+
+/* footer bottom bar */
+footer {
+  flex-wrap: wrap;
+}
+
+.footer-bottom {
+  flex-basis: 100%;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(159, 161, 188, 0.25);
+  text-align: center;
+  font-size: var(--fs-200);
+  color: var(--clr-light);
+}
+
+/* scroll reveal (only when JS is running, see js/navBar.js) */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.js .reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* ------------------- */
 /* Animation control   */
 /* ------------------- */
