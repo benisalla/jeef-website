@@ -39,7 +39,6 @@ Aucun changement de technologie : le site reste en HTML, CSS et JavaScript purs.
 * Script GSAP (≈70 Ko) chargé mais jamais utilisé : retiré.
 * `preconnect` vers Google Fonts, gestion du défilement via `requestAnimationFrame` et écouteurs
   passifs.
-* Respect de `prefers-reduced-motion` (animations désactivées pour les utilisateurs qui le demandent).
 
 ### Animations
 
