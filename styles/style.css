@@ -336,7 +336,7 @@ section {
   justify-content: center;
   align-items: center;
   z-index: 99;
-  transition: 0.5s;
+  transition: opacity 0.5s, background-color 0.5s, box-shadow 0.5s;
   transform: scale(0.7);
   cursor: pointer;
 }
@@ -434,25 +434,28 @@ a.btn {
 .btn::before {
   content: "";
   width: 100%;
-  height: 0%;
+  height: 50%;
   position: absolute;
   left: 0;
   background-color: var(--clr-white);
-  transition: 0.4s ease;
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
   z-index: 1;
 }
 
 .btn::after {
   top: 0;
+  transform-origin: top;
 }
 
 .btn::before {
   bottom: 0;
+  transform-origin: bottom;
 }
 
 .btn:hover:after,
 .btn:hover:before {
-  height: 50%;
+  transform: scaleY(1);
 }
 
 .btn:hover h1 {
@@ -550,7 +553,6 @@ a.btn {
 .item {
   position: relative;
   padding: 0.5rem 0rem;
-  transition: 0.5s ease;
 }
 
 .item a {
@@ -564,16 +566,17 @@ a.btn {
   background-color: var(--clr-prime);
   position: absolute;
   bottom: 0;
-  width: 0;
-  left: 50%;
+  width: 100%;
+  left: 0;
   height: 3px;
-  transition: 0.5s ease;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.5s ease;
 }
 
 .nav-menu li:hover:before,
 .item.active::before {
-  left: 0;
-  width: 100%;
+  transform: scaleX(1);
 }
 
 /*---------------------< for mobile >---------------------*/
@@ -583,14 +586,15 @@ a.btn {
   position: fixed;
   width: 50%;
   min-width: 10.5rem;
-  left: -50%;
+  left: 0;
   top: 0;
   height: 100vh;
-  transition: 0.5s ease;
+  transform: translateX(-100%);
+  transition: transform 0.5s ease;
 }
 
 .nav-content.collapsed.active {
-  left: 0;
+  transform: translateX(0);
 }
 
 .nav-content.collapsed .nav-menu {
@@ -1325,6 +1329,18 @@ p {
 }
 
 /* ------------------------------------------about end ------------------------------------ */
+/* ------------------- */
+/* Animation control   */
+/* ------------------- */
+
+/* Heavy decorative animations are paused by js/navBar.js while their container is off-screen. */
+.anim-paused,
+.anim-paused *,
+.anim-paused *::before,
+.anim-paused *::after {
+  animation-play-state: paused !important;
+}
+
 /* ------------------- */
 /* Accessibility       */
 /* ------------------- */

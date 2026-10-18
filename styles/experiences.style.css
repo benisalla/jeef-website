@@ -426,8 +426,8 @@
 }
 
 .prism__face:nth-child(-n+4):nth-child(2n) {
-    -webkit-filter: brightness(0.7);
-    filter: brightness(0.7);
+    /* a static overlay instead of a filter: filters on 3D-transformed faces force extra GPU passes */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
 }
 
 .prism__face:nth-child(1) {
@@ -535,11 +535,7 @@ video {
 a.slide_btn {
     color: white;
     font-size: 50px;
-    -webkit-transition: all 0.4s ease-in-out;
-    -moz-transition: all 0.4s ease-in-out;
-    -ms-transition: all 0.4s ease-in-out;
-    -o-transition: all 0.4s ease-in-out;
-    transition: all 0.4s ease-in-out;
+    transition: color 0.4s ease-in-out;
 }
 
 .slide_btn.active,
@@ -559,11 +555,7 @@ a.slide_btn {
     cursor: pointer;
     height: 2rem;
     opacity: 0.8;
-    -webkit-transition: opacity 0.4s ease-in-out;
-    -moz-transition: opacity 0.4s ease-in-out;
-    -ms-transition: opacity 0.4s ease-in-out;
-    -o-transition: opacity 0.4s ease-in-out;
-    transition: opacity 0.4s ease-in-out;
+    transition: opacity 0.4s ease-in-out, color 0.4s ease-in-out, background-color 0.4s ease-in-out;
     width: 2rem;
     color: #eee;
     background-color: #F54B4B;

@@ -81,6 +81,8 @@ label {
   }
 
   .cubes {
+    /* ~50 blurred, animated shadow layers are too expensive for phones: drop the blur there */
+    --shadow-filter: none;
     left: 190px;
     perspective: 90000px;
     transform-origin: center;

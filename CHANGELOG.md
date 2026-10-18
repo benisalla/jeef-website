@@ -41,6 +41,22 @@ Aucun changement de technologie : le site reste en HTML, CSS et JavaScript purs.
   passifs.
 * Respect de `prefers-reduced-motion` (animations désactivées pour les utilisateurs qui le demandent).
 
+### Animations
+
+* Les animations décoratives (cube 3D des événements, plateforme de la page À propos, prisme des
+  expériences, image flottante des services, circuit dessiné du pied de page) sont **mises en pause
+  dès qu'elles sortent de l'écran** (`IntersectionObserver` + `animation-play-state`). Sur la page
+  Événements, on passe d'environ 300 animations actives à 1 une fois le cube hors de vue.
+* Sur mobile, les ~50 ombres floutées animées du cube 3D ne sont plus floutées (`filter: blur`
+  animé est le coût GPU le plus élevé de tout le site) ; le cube lui-même reste identique.
+* Les effets de survol (soulignement du menu, barres blanches des boutons, menu latéral mobile)
+  animent désormais `transform` au lieu de `width`, `left` et `height`, ce qui évite un recalcul de
+  mise en page à chaque image.
+* Le prisme de la page Expériences n'utilise plus `filter: brightness()` sur 144 faces 3D : une
+  superposition sombre statique donne le même rendu sans passe GPU supplémentaire.
+* Les `transition: all` sont remplacées par des transitions ciblées (`color`, `opacity`,
+  `transform`).
+
 ### Améliorations
 
 * Le bouton « Contactez-nous » ouvre un e-mail ; e-mail et téléphone du pied de page cliquables ;

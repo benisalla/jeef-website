@@ -8,10 +8,12 @@
   text-align: center;
 }
 
+.icons a svg {
+  transition: transform 0.5s;
+}
+
 .icons a svg:hover {
   transform: rotate(360deg);
-  transition: 0.5s;
-
 }
 
 .icons a svg path:hover {

@@ -98,3 +98,24 @@ if (navBarContainer) {
 
   updateFixedNav();
 }
+
+//---------------------------< pause decorative animations while off-screen >---------------------------//
+// The 3D cube (events), the platform (about), the prism (experiences), the floating image (services)
+// and the drawn circuit in the footer are infinite CSS animations. Running them while they are not
+// visible wastes CPU/GPU and battery, so they are paused until they scroll into view.
+(function () {
+  const ANIMATED = ".jeef_magic_cube, .paltform-container, .my_animation, .animated, .anime";
+  const targets = document.querySelectorAll(ANIMATED);
+  if (!targets.length || !("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle("anim-paused", !entry.isIntersecting);
+      });
+    },
+    { rootMargin: "100px 0px" }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+})();
